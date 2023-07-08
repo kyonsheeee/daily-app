@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 
-import { Todo } from "../hooks/Todo";
+import { useTodo } from "../hooks/useTodo";
+import { Todo } from "../types/Todo";
 import { TodoTitle } from "./TodoTitle";
 import { TodoAdd } from "./TodoAdd";
 import { TodoList } from "./TodoList";
@@ -40,10 +41,16 @@ function App() {
       <TodoList
         todoList={incompletedList}
         toggleTodoListItemStatus={toggleTodoListItemStatus}
+        deleteTodoListItem={deleteTodoListItem}
+        title="未完了TODOリスト"
+        as="h2"
       />
       <TodoList
         todoList={completedList}
         toggleTodoListItemStatus={toggleTodoListItemStatus}
+        deleteTodoListItem={deleteTodoListItem}
+        title="完了TODOリスト"
+        as="h2"
       />
     </>
   );
