@@ -31,15 +31,17 @@ export const useTodo = () => {
     });
   };
 
-  const addTodoListItem = (todoContent: string) => {
+  const addTodoListItem = async(todoContent: string) => {
     // 新しい item を作成する
     const newTodoItem = { id: ulid(), content: todoContent, done: false };
-
     // サーバの追加 API を呼ぶ
-    todoData.addTodoData(newTodoItem).then((addTodo) => {
+    try {
+      const addTodo = await todoData.addTodoData(newTodoItem) ;
       // addTodo を todoList に追加して state にセットする
       setTodoList([addTodo, ...todoList]);
-    });
+    }catch (e) {
+      console.log(e);
+    }
   };
 
   const deleteTodoListItem = (id: string) => {
